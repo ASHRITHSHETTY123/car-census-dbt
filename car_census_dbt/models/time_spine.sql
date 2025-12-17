@@ -1,12 +1,4 @@
-{{ 
-  config(
-    materialized = 'table',
-    metricflow_time_spine = {
-      "time_column": "date_day",
-      "time_granularity": "day"
-    }
-  ) 
-}}
+{{ config(materialized='table') }}
 
 select
   date_day
