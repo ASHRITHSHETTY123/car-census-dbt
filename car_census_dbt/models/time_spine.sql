@@ -1,8 +1,9 @@
 {{ 
   config(
     materialized = 'table',
-    meta = {
-      'metricflow_time_spine': true
+    metricflow_time_spine = {
+      "time_column": "date_day",
+      "time_granularity": "day"
     }
   ) 
 }}
