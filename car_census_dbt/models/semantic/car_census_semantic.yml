@@ -9,7 +9,7 @@ semantic_models:
 
     entities:
       - name: branch
-        type: foreign
+        type: primary     
         expr: branch_id
 
     dimensions:
