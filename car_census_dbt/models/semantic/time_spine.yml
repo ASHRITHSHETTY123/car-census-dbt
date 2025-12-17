@@ -1,0 +1,11 @@
+version: 2
+
+semantic_models:
+  - name: time_spine
+    model: ref('time_spine')
+
+    dimensions:
+      - name: date_day
+        type: time
+        type_params:
+          time_granularity: day
