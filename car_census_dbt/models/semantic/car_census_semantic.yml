@@ -1,0 +1,48 @@
+version: 2
+
+semantic_models:
+  - name: car_census_monthly
+    model: ref('fct_month_car_census')
+
+    defaults:
+      agg_time_dimension: month_end_date
+
+    entities:
+      - name: branch
+        type: foreign
+        expr: branch_id
+
+    dimensions:
+      - name: month_end_date
+        type: time
+        type_params:
+          time_granularity: month
+
+    measures:
+      - name: cars_in_stage6
+        agg: sum
+        expr: cars_in_stage6
+
+      - name: cars_in_stage8
+        agg: sum
+        expr: cars_in_stage8
+
+      - name: cars_in_stage9
+        agg: sum
+        expr: cars_in_stage9
+
+      - name: cars_in_stage10
+        agg: sum
+        expr: cars_in_stage10
+
+      - name: cars_in_stage11
+        agg: sum
+        expr: cars_in_stage11
+
+      - name: cars_in_stage12
+        agg: sum
+        expr: cars_in_stage12
+
+      - name: cars_in_stage13
+        agg: sum
+        expr: cars_in_stage13
