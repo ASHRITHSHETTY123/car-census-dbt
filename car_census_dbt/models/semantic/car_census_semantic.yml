@@ -1,48 +1,94 @@
-version: 2
-
 semantic_models:
-  - name: car_census_monthly
-    model: ref('fct_month_car_census')
-
+  - name: car_census
+    model: ref('fact_car_census_monthly')
+    
     defaults:
       agg_time_dimension: month_end_date
 
     entities:
+      - name: car_census_record
+        type: primary
+        expr: CONCAT(CAST(branch_id AS STRING), '_', CAST(stage AS STRING), '_', CAST(month_end_date AS STRING))
+      
       - name: branch
-        type: primary     
+        type: foreign
         expr: branch_id
 
     dimensions:
       - name: month_end_date
         type: time
         type_params:
-          time_granularity: month
+          time_granularity: day
+        
+      - name: stage
+        type: categorical
 
     measures:
-      - name: cars_in_stage6
+      - name: cars_count
         agg: sum
-        expr: cars_in_stage6
+        expr: car_count
 
-      - name: cars_in_stage8
-        agg: sum
-        expr: cars_in_stage8
+metrics:
+  - name: cars_in_stage10
+    label: "Cars in Stage 10"
+    type: simple
+    type_params:
+      measure: cars_count
+    filter: |
+      {{ Dimension('car_census__stage') }} = 10
 
-      - name: cars_in_stage9
-        agg: sum
-        expr: cars_in_stage9
+  - name: cars_in_stage11
+    label: "Cars in Stage 11"
+    type: simple
+    type_params:
+      measure: cars_count
+    filter: |
+      {{ Dimension('car_census__stage') }} = 11
 
-      - name: cars_in_stage10
-        agg: sum
-        expr: cars_in_stage10
+  - name: cars_in_stage6
+    label: "Cars in Stage 6"
+    type: simple
+    type_params:
+      measure: cars_count
+    filter: |
+      {{ Dimension('car_census__stage') }} = 6
 
-      - name: cars_in_stage11
-        agg: sum
-        expr: cars_in_stage11
+  - name: cars_in_stage7
+    label: "Cars in Stage 7"
+    type: simple
+    type_params:
+      measure: cars_count
+    filter: |
+      {{ Dimension('car_census__stage') }} = 7
 
-      - name: cars_in_stage12
-        agg: sum
-        expr: cars_in_stage12
+  - name: cars_in_stage8
+    label: "Cars in Stage 8"
+    type: simple
+    type_params:
+      measure: cars_count
+    filter: |
+      {{ Dimension('car_census__stage') }} = 8
 
-      - name: cars_in_stage13
-        agg: sum
-        expr: cars_in_stage13
+  - name: cars_in_stage9
+    label: "Cars in Stage 9"
+    type: simple
+    type_params:
+      measure: cars_count
+    filter: |
+      {{ Dimension('car_census__stage') }} = 9
+
+  - name: cars_in_stage12
+    label: "Cars in Stage 12"
+    type: simple
+    type_params:
+      measure: cars_count
+    filter: |
+      {{ Dimension('car_census__stage') }} = 12
+
+  - name: cars_in_stage13
+    label: "Cars in Stage 13"
+    type: simple
+    type_params:
+      measure: cars_count
+    filter: |
+      {{ Dimension('car_census__stage') }} = 13

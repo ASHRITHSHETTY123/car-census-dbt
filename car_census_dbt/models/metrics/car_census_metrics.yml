@@ -1,9 +1,0 @@
-version: 2
-
-metrics:
-  - name: cars_in_stage10
-    label: Cars in Stage 10
-    type: simple
-
-    type_params:
-      measure: cars_in_stage10

@@ -1,9 +1,0 @@
-version: 2
-
-sources:
-  - name: operational_layer
-    database: data-lake-400914
-    schema: operational_layer
-    tables:
-      - name: op_report_carcensus
-      - name: op_bos_organization_branch
