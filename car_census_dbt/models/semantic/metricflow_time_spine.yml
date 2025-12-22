@@ -1,0 +1,11 @@
+models:
+  - name: metricflow_time_spine
+    description: "Date spine for MetricFlow semantic layer with daily granularity from 2020-01-01 to current date"
+    
+    columns:
+      - name: date_day
+        description: "Primary date dimension at daily granularity for MetricFlow time-based queries"
+        granularity: day
+        data_tests:
+          - not_null
+          - unique
