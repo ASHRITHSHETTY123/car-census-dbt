@@ -1,6 +1,6 @@
 {{ config(materialized='table') }}
 
-SELECT
+SELECT                          --new change
   month_end AS month_end_date,
   branch_id,
   stage,
