@@ -1,16 +1,43 @@
 {{ config(materialized='table') }}
 
+WITH last_day_of_months AS (
+  SELECT
+    month_end,
+    month_start
+  FROM {{ ref('int_month_calendar') }}
+),
+
+census_snapshot AS (
+  SELECT
+    c.census_date,
+    b.branch_id,
+    b.branch_name,
+    c.stage,
+    c.program_name
+  FROM {{ ref('stg_report_carcensus') }} c
+  LEFT JOIN {{ ref('stg_branches') }} b
+    ON c.program_name = b.branch_name
+),
+
+monthly_snapshot AS (
+  SELECT
+    lm.month_end,
+    cs.branch_id,
+    cs.stage,
+    COUNT(*) AS car_count
+  FROM last_day_of_months lm
+  INNER JOIN census_snapshot cs
+    ON cs.census_date = lm.month_end  -- ✅ Only last day of month
+  WHERE cs.branch_id IS NOT NULL
+  GROUP BY
+    lm.month_end,
+    cs.branch_id,
+    cs.stage
+)
+
 SELECT
-  cal.month_end,
-  b.branch_id,
-  c.stage,
-  COUNT(*) AS car_count
-FROM {{ ref('int_month_calendar') }} cal
-LEFT JOIN {{ ref('stg_report_carcensus') }} c
-  ON c.census_date BETWEEN cal.month_start AND cal.month_end
-LEFT JOIN {{ ref('stg_branches') }} b
-  ON c.program_name = b.branch_name
-GROUP BY
-  cal.month_end,
-  b.branch_id,
-  c.stage
+  month_end,
+  branch_id,
+  stage,
+  car_count
+FROM monthly_snapshot
