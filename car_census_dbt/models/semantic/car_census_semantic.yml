@@ -35,7 +35,7 @@ metrics:
     type_params:
       measure: cars_count
     filter: |
-      {{ Dimension('car_census__stage') }} = 10
+      {{ Dimension('car_census_record__stage') }} = 10
 
   - name: cars_in_stage11
     label: "Cars in Stage 11"
@@ -43,7 +43,7 @@ metrics:
     type_params:
       measure: cars_count
     filter: |
-      {{ Dimension('car_census__stage') }} = 11
+      {{ Dimension('car_census_record__stage') }} = 11
 
   - name: cars_in_stage6
     label: "Cars in Stage 6"
@@ -51,7 +51,7 @@ metrics:
     type_params:
       measure: cars_count
     filter: |
-      {{ Dimension('car_census__stage') }} = 6
+      {{ Dimension('car_census_record__stage') }} = 6
 
   - name: cars_in_stage7
     label: "Cars in Stage 7"
@@ -59,7 +59,7 @@ metrics:
     type_params:
       measure: cars_count
     filter: |
-      {{ Dimension('car_census__stage') }} = 7
+      {{ Dimension('car_census_record__stage') }} = 7
 
   - name: cars_in_stage8
     label: "Cars in Stage 8"
@@ -67,7 +67,7 @@ metrics:
     type_params:
       measure: cars_count
     filter: |
-      {{ Dimension('car_census__stage') }} = 8
+      {{ Dimension('car_census_record__stage') }} = 8
 
   - name: cars_in_stage9
     label: "Cars in Stage 9"
@@ -75,7 +75,7 @@ metrics:
     type_params:
       measure: cars_count
     filter: |
-      {{ Dimension('car_census__stage') }} = 9
+      {{ Dimension('car_census_record__stage') }} = 9
 
   - name: cars_in_stage12
     label: "Cars in Stage 12"
@@ -83,7 +83,7 @@ metrics:
     type_params:
       measure: cars_count
     filter: |
-      {{ Dimension('car_census__stage') }} = 12
+      {{ Dimension('car_census_record__stage') }} = 12
 
   - name: cars_in_stage13
     label: "Cars in Stage 13"
@@ -91,4 +91,10 @@ metrics:
     type_params:
       measure: cars_count
     filter: |
-      {{ Dimension('car_census__stage') }} = 13
+      {{ Dimension('car_census_record__stage') }} = 13
+	  
+	  
+	  
+	  
+	  
+	  
